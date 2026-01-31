@@ -9,6 +9,8 @@ import {
   Group,
   Image,
   Box,
+  Center,
+  Container,
 } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import NavBar from "src/components/ui/navbar"; // Import NavBar component
@@ -42,97 +44,46 @@ export function App() {
       <NavBar active={active} setActive={setActive} />
 
       {/* Content */}
-      <div style={{ padding: 24, display: "flex", justifyContent: "center" }}>
-        {active === "tractors" && (
-          <Card shadow="md" radius="md" withBorder style={{ width: 420 }}>
-            <Title order={3} mb="md">
-              🚜 Tractor Booking
-            </Title>
-            <form onSubmit={handleSubmit}>
-              <Stack>
-                <TextInput
-                  label="Farmer Name"
-                  value={form.name}
-                  onChange={(e) =>
-                    setForm({ ...form, name: e.currentTarget.value })
-                  }
-                  required
-                />
-                <TextInput
-                  label="Phone Number"
-                  value={form.phone}
-                  onChange={(e) =>
-                    setForm({ ...form, phone: e.currentTarget.value })
-                  }
-                  required
-                />
-                <TextInput
-                  label="Field Location"
-                  value={form.location}
-                  onChange={(e) =>
-                    setForm({ ...form, location: e.currentTarget.value })
-                  }
-                  required
-                />
-                <DateInput
-                  label="Booking Date"
-                  value={form.date}
-                  onChange={(v) => setForm({ ...form, date: v })}
-                  required
-                />
-                <NumberInput
-                  label="Hours Required"
-                  min={1}
-                  value={form.hours}
-                  onChange={(v) => setForm({ ...form, hours: Number(v) })}
-                  required
-                />
-                <Button type="submit" fullWidth>
-                  Book Tractor
-                </Button>
-              </Stack>
-            </form>
-          </Card>
-        )}
+      <Container size="lg" py="xl">
+        <Center>
+          {active === "tractors" && (
+            <Card shadow="md" radius="lg" withBorder maw={420} w="100%">
+              <Title order={3} mb="md">🚜 Tractor Booking</Title>
+              <form onSubmit={handleSubmit}>
+                <Stack>
+                  <TextInput label="Farmer Name" required />
+                  <TextInput label="Phone Number" required />
+                  <TextInput label="Field Location" required />
+                  <DateInput label="Booking Date" required />
+                  <NumberInput label="Hours Required" min={1} required />
+                  <Button type="submit" size="md">Book Tractor</Button>
+                </Stack>
+              </form>
+            </Card>
+          )}
 
-        {active === "deshpande" && (
-          <Card shadow="md" radius="md" withBorder style={{ width: 640 }}>
-            <Title order={3} mb="md">
-              Sir Deshpande
-            </Title>
-            <Box style={{ aspectRatio: "16 / 9" }}>
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/MtZrQxzTgic"
-                title="YouTube video"
-                frameBorder="0"
-                allowFullScreen
-              />
-            </Box>
-          </Card>
-        )}
-
-        {active === "dada" && (
-          <Card shadow="md" radius="md" withBorder style={{ width: 640 }}>
-            <Title order={3} mb="md">
-              Dada Lad
-            </Title>
-            <Box style={{ aspectRatio: "16 / 9" }}>
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/WkBUbEmEHWQ?si=dF4sLOUBekoAfHau"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </Box>
-          </Card>
-        )}
-      </div>
+          {(active === "deshpande" || active === "dada") && (
+            <Card shadow="md" radius="lg" withBorder maw={720} w="100%">
+              <Title order={3} mb="md">
+                {active === "deshpande" ? "Sir Deshpande" : "Dada Lad"}
+              </Title>
+              <Box style={{ aspectRatio: "16 / 9", borderRadius: 12, overflow: "hidden" }}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={
+                    active === "deshpande"
+                      ? "https://www.youtube.com/embed/MtZrQxzTgic"
+                      : "https://www.youtube.com/embed/WkBUbEmEHWQ"
+                  }
+                  frameBorder="0"
+                  allowFullScreen
+                />
+              </Box>
+            </Card>
+          )}
+        </Center>
+      </Container>
     </div>
   );
 }
