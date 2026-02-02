@@ -1,7 +1,7 @@
 import { Box, Group, Text, Container, Button, Stack } from "@mantine/core";
 
 const tabs = [
-  { key: "tractors", label: "Tractors" },
+  // { key: "tractors", label: "Tractors" },
   { key: "deshpande", label: "Sir Deshpande" },
   { key: "dada", label: "Dada Lad" },
 ];

@@ -16,8 +16,8 @@ import { DateInput } from "@mantine/dates";
 import NavBar from "src/components/ui/navbar"; // Import NavBar component
 
 export function App() {
-  const [active, setActive] = useState<"tractors" | "deshpande" | "dada">(
-    "tractors",
+  const [active, setActive] = useState< "deshpande" | "dada">(
+    "deshpande",
   );
 
   const [form, setForm] = useState({
@@ -46,7 +46,7 @@ export function App() {
       {/* Content */}
       <Container size="lg" py="xl">
         <Center>
-          {active === "tractors" && (
+          {/* {active === "tractors" && (
             <Card shadow="md" radius="lg" withBorder maw={420} w="100%">
               <Title order={3} mb="md">🚜 Tractor Booking</Title>
               <form onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ export function App() {
                 </Stack>
               </form>
             </Card>
-          )}
+          )} */}
 
           {(active === "deshpande" || active === "dada") && (
             <Card shadow="md" radius="lg" withBorder maw={720} w="100%">
